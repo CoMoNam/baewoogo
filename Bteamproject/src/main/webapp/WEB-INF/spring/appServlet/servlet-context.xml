@@ -21,7 +21,11 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+<<<<<<< HEAD
 	<context:component-scan base-package="com.web.Bteamproject" />
+=======
+	<context:component-scan base-package="com.web" />
+>>>>>>> branch 'master' of https://github.com/CoMoNam/baewoogo.git
 	
 	
 	
