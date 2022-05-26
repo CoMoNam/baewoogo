@@ -2,6 +2,7 @@ package com.web.Bteamproject;
 
 import java.text.DateFormat;
 import java.util.Date;
+<<<<<<< HEAD
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -35,5 +36,98 @@ public class HomeController {
 		
 		return "home";
 	}
+=======
+<<<<<<< HEAD
+import java.util.Locale;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+/**
+ * Handles requests for the application home page.
+ */
+@Controller
+public class HomeController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 */
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "home";
+	}
+=======
+import java.util.List;
+import java.util.Locale;
+
+import javax.annotation.Resource;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.web.service.BteamService;
+import com.web.vo.BteamVO;
+
+/**
+ * Handles requests for the application home page.
+ */
+@Controller
+public class HomeController {
+	
+	@Resource(name = "bteamService")
+	private BteamService bteamService;
+	
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 */
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "home";
+	}
+	
+	@RequestMapping(value = "/bteam")
+	public String bteamList(Model model) throws Exception {
+
+	    List<BteamVO> list = bteamService.selectBteamList();
+
+	    logger.info(list.toString());
+
+	    model.addAttribute("list", list);
+
+	    return "bteamList";
+	}
+	
+>>>>>>> branch 'master' of https://github.com/CoMoNam/baewoogo.git
+>>>>>>> refs/remotes/origin/master
 	
 }
